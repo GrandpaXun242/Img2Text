@@ -13,7 +13,6 @@ import re
 blip_image_eval_size = 384
 device = "cuda"
 
-loaded_categories = []
 re_topn = re.compile(r"\.top(\d+)\.")
 Category = namedtuple("Category", ["name", "topn", "items"])
 
@@ -68,6 +67,7 @@ def download_default_clip_interrogate_categories(content_dir):
 
 
 def categories(content_dir="interrogate"):
+    loaded_categories = []
     if not os.path.exists(content_dir):
         download_default_clip_interrogate_categories(content_dir)
 
@@ -182,8 +182,6 @@ def load_blip_model():
     sys.path.append("./repositories/BLIP/")
     import models.blip
 
-    # model_path = "/home/zzx/PythonProject/stable-diffusion-webui/models"
-    # BLIP_path = "/home/zzx/PythonProject/stable-diffusion-webui/repositories/BLIP"
     model_path = "./weight"
     BLIP_path = "./"
 
